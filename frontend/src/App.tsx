@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Dashboard from '@/pages/Dashboard'
 import Connections from '@/pages/Connections'
+import Models from '@/pages/Models'
+import ModelDetail from '@/pages/ModelDetail'
 
 const queryClient = new QueryClient()
 
@@ -13,6 +15,7 @@ function Nav() {
     <nav className="border-b px-6 py-3 flex items-center gap-4">
       <span className="font-bold text-lg mr-6">FP&A Dream</span>
       <NavLink to="/" end className={linkClass}>Dashboard</NavLink>
+      <NavLink to="/models" className={linkClass}>Models</NavLink>
       <NavLink to="/connections" className={linkClass}>Connections</NavLink>
     </nav>
   )
@@ -26,6 +29,8 @@ export default function App() {
           <Nav />
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/models" element={<Models />} />
+            <Route path="/models/:modelId" element={<ModelDetail />} />
             <Route path="/connections" element={<Connections />} />
           </Routes>
         </div>

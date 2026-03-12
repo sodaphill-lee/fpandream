@@ -3,7 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
 from app.database import engine, Base
-from app.routers import xero, myob, organisations
+from app.routers import xero, myob, organisations, models as models_router
+import app.models.modeling  # ensure modeling tables are registered on Base
 
 Base.metadata.create_all(bind=engine)
 
@@ -20,6 +21,7 @@ app.add_middleware(
 app.include_router(organisations.router)
 app.include_router(xero.router)
 app.include_router(myob.router)
+app.include_router(models_router.router)
 
 
 @app.get("/health")

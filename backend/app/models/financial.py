@@ -21,6 +21,7 @@ class Organisation(Base):
     connections = relationship("Connection", back_populates="organisation")
     accounts = relationship("Account", back_populates="organisation")
     transactions = relationship("Transaction", back_populates="organisation")
+    models = relationship("FinancialModel", back_populates="organisation")
 
 
 class Connection(Base):
